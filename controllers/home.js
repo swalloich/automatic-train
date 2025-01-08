@@ -1,3 +1,3 @@
-exports.getHome = (req, res, next) => {
+exports.getHome = (req, res) => {
   res.send('Jacob Nelson');
 }
