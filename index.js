@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
-const homeController = require('./controllers/home');
+const homeRoute = require('./routes/index');
 
-app.get('/', homeController.getHome);
+app.use('/', homeRoute);
 
 const DEFAULT_PORT = 3000;
 app.listen(process.env.port || DEFAULT_PORT, () => {
