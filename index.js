@@ -1,10 +1,10 @@
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
+const homeController = require('./controllers/home');
 
-app.get('/', (req, res, next) => {
-  res.send('Jacob Nelson');
-})
+app.get('/', homeController.getHome);
 
-app.listen(3000, () => {
-  console.log('Server is running on http://localhost:3000');
+const DEFAULT_PORT = 3000;
+app.listen(process.env.port || DEFAULT_PORT, () => {
+  console.log(`Server is running on http://localhost:${process.env.port || DEFAULT_PORT}`);
 });
