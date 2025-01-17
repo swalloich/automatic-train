@@ -1,0 +1,15 @@
+// LOCALHOST
+###
+GET http://localhost:3000/
+###
+GET http://localhost:3000/contacts
+###
+GET http://localhost:3000/contacts/67888de38daff08a8f8dd34b
+
+// PRODUCTION Deploy
+###
+GET https://automatic-train.onrender.com/
+###
+GET https://automatic-train.onrender.com/contacts
+###
+GET https://automatic-train.onrender.com/contacts/67888de38daff08a8f8dd34b

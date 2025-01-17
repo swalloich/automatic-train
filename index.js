@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
-const homeRoute = require('./routes/index');
+require('./db').connect();
 
-app.use('/', homeRoute);
+app.use('/', require('./routes'));
 
 const DEFAULT_PORT = 3000;
 app.listen(process.env.port || DEFAULT_PORT, () => {
