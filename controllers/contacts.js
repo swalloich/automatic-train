@@ -12,4 +12,13 @@ async function getContacts(req, res) {
     });
 }
 
-module.exports = { getContacts };
+async function getContact(req, res) {
+  const contact = await db.findOne({ collection, options: { id: req.params.id } });
+  if (contact) {
+    res.status(200).json(contact);
+  } else {
+    res.status(404).send(`No contact found with id: ${req.params.id}`)
+  }
+}
+
+module.exports = { getContacts, getContact }

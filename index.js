@@ -1,13 +1,12 @@
 const express = require('express');
 const app = express();
-const homeController = require('./controllers/home');
-
-app.get('/', homeController.getHome);
-const homeRoute = require('./routes/index');
 require('./db').connect();
 
+const homeRoute = require('./routes/home');
+const contactsRoute = require('./routes/contacts');
+
 app.use('/', homeRoute);
-app.use('/contacts', require('./routes/contacts'));
+app.use('/contacts', contactsRoute);
 
 const DEFAULT_PORT = 3000;
 app.listen(process.env.port || DEFAULT_PORT, () => {

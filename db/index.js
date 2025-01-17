@@ -26,4 +26,12 @@ async function find({ collection, db, params }) {
   }
 }
 
-module.exports = { connect, find }
+async function findOne({ collection, db, options }) {
+  try {
+    return await client.db(db || 'CSE341').collection(collection).findOne({}, options)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+module.exports = { connect, find, findOne }
