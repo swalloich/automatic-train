@@ -1,10 +1,10 @@
 // LOCALHOST
 ###
-GET http://localhost:3000/
+GET http://localhost:8080/
 ###
-GET http://localhost:3000/contacts
+GET http://localhost:8080/contacts
 ###
-GET http://localhost:3000/contacts/67888de38daff08a8f8dd34b
+GET http://localhost:8080/contacts/67888de38daff08a8f8dd34b
 
 // PRODUCTION Deploy
 ###
