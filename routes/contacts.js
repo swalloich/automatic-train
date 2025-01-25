@@ -12,8 +12,8 @@ const {
 
 router.get('/', getContacts)
 router.post('/', validateContact, addContact)
-router.put('/:email', validateUpdatedContact, updateContact)
-router.get('/:email', getContact)
-router.delete('/:email', deleteContact)
+router.put('/:id', validateUpdatedContact, updateContact)
+router.get('/:id', getContact)
+router.delete('/:id', deleteContact)
 
 module.exports = router

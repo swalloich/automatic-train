@@ -1,5 +1,6 @@
 const { body, validationResult } = require('express-validator')
-const db = require('../db')
+const db = require('../db');
+const { ObjectId } = require('mongodb');
 const collection = 'contacts'
 
 const validateContact = [
@@ -34,7 +35,8 @@ async function addContact(req, res) {
 }
 
 async function deleteContact(req, res) {
-  await db.deleteOne({ collection, filter: { email: req.params.email } })
+  const id = ObjectId.createFromHexString(req.params.id)
+  await db.deleteOne({ collection, filter: { _id: id } })
     .then((response) => {
       if (response.deletedCount === 0) {
         return res.status(404).send(`No contact found with email: ${req.params.email}`)
@@ -52,10 +54,11 @@ async function updateContact(req, res) {
     return res.status(400).json({ errors: errors.array() })
   }
 
-  await db.update({ collection, data: req.body, filter: { email: req.params.email } })
+  const id = ObjectId.createFromHexString(req.params.id)
+  await db.update({ collection, data: req.body, filter: { _id: id } })
     .then((response) => {
       if (response.matchedCount === 0) {
-        return res.status(404).send(`No contact found with email: ${req.params.email}`)
+        return res.status(404).send(`No contact found with id: ${req.params.id}`)
       } else if (response.modifiedCount === 0) {
         return res.status(304).send("Contact not modified")
       }
@@ -78,8 +81,8 @@ async function getContacts(_, res) {
 }
 
 async function getContact(req, res) {
-  const email = req.params.email
-  await db.findOne({ collection, query: { email } })
+  const id = ObjectId.createFromHexString(req.params.id)
+  await db.findOne({ collection, query: { _id: id } })
     .then((contact) => {
       if (contact) {
         res.status(200).json(contact)
