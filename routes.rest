@@ -4,6 +4,8 @@ GET http://localhost:8080/
 ###
 GET http://localhost:8080/contacts
 ###
+GET http://localhost:8080/contacts/jane.doe%40website.com
+###
 POST http://localhost:8080/contacts HTTP/1.1
 content-type: application/json
 
@@ -15,8 +17,14 @@ content-type: application/json
   "birthday":"1961-08-04T12:00:00+00:00"
 }
 ###
-GET http://localhost:8080/contacts/67888de38daff08a8f8dd34b
+PUT http://localhost:8080/contacts/44%40potus.gov HTTP/1.1
+content-type: application/json
 
+{
+  "phone":"555-123-4567"
+}
+###
+DELETE http://localhost:8080/contacts/44%40potus.gov
 
 // PRODUCTION Deploy
 ###

@@ -18,9 +18,9 @@ function connect(customUri) {
     })
 }
 
-async function insert({ collection, db, data }) {
+async function deleteOne({ collection, db, filter }) {
   try {
-    return await client.db(db || 'CSE341').collection(collection).insertOne(data)
+    return await client.db(db || 'CSE341').collection(collection).deleteOne(filter)
   } catch (err) {
     console.error(err)
   }
@@ -42,6 +42,14 @@ async function findOne({ collection, db, options, query }) {
   }
 }
 
+async function insert({ collection, db, data }) {
+  try {
+    return await client.db(db || 'CSE341').collection(collection).insertOne(data)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 async function update({ collection, data, db, filter, options }) {
   try {
     return await client.db(db || 'CSE341').collection(collection).updateOne(filter, { $set: data }, options)
@@ -50,4 +58,4 @@ async function update({ collection, data, db, filter, options }) {
   }
 }
 
-module.exports = { connect, find, findOne, insert, update }
+module.exports = { connect, deleteOne, find, findOne, insert, update }

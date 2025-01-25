@@ -33,6 +33,19 @@ async function addContact(req, res) {
     });
 }
 
+async function deleteContact(req, res) {
+  await db.deleteOne({ collection, filter: { email: req.params.email } })
+    .then((response) => {
+      if (response.deletedCount === 0) {
+        return res.status(404).send(`No contact found with email: ${req.params.email}`)
+      }
+      res.status(200).send()
+    })
+    .catch(() => {
+      res.status(500).send("Internal Server Error")
+    });
+}
+
 async function updateContact(req, res) {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
@@ -79,4 +92,4 @@ async function getContact(req, res) {
     })
 }
 
-module.exports = { addContact, getContacts, getContact, updateContact, validateContact, validateUpdatedContact }
+module.exports = { addContact, deleteContact, getContacts, getContact, updateContact, validateContact, validateUpdatedContact }
