@@ -18,6 +18,15 @@ function connect(customUri) {
     })
 }
 
+async function insert({ collection, db, data }) {
+  try {
+    return await client.db(db || 'CSE341').collection(collection).insertOne(data)
+  } catch (err) {
+    console.error(err)
+    return false
+  }
+}
+
 async function find({ collection, db, params }) {
   try {
     return await client.db(db || 'CSE341').collection(collection).find({...params})
@@ -34,4 +43,4 @@ async function findOne({ collection, db, options }) {
   }
 }
 
-module.exports = { connect, find, findOne }
+module.exports = { connect, insert, find, findOne }

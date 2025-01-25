@@ -4,7 +4,19 @@ GET http://localhost:8080/
 ###
 GET http://localhost:8080/contacts
 ###
+POST http://localhost:8080/contacts HTTP/1.1
+content-type: application/json
+
+{
+  "firstName":"Barack",
+  "lastName":"Obama",
+  "email":"44@potus.gov",
+  "favoriteColor":"blue",
+  "birthday":"1961-08-04T12:00:00+00:00"
+}
+###
 GET http://localhost:8080/contacts/67888de38daff08a8f8dd34b
+
 
 // PRODUCTION Deploy
 ###
