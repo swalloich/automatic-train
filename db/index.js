@@ -23,7 +23,6 @@ async function insert({ collection, db, data }) {
     return await client.db(db || 'CSE341').collection(collection).insertOne(data)
   } catch (err) {
     console.error(err)
-    return false
   }
 }
 
@@ -35,12 +34,20 @@ async function find({ collection, db, params }) {
   }
 }
 
-async function findOne({ collection, db, options }) {
+async function findOne({ collection, db, options, query }) {
   try {
-    return await client.db(db || 'CSE341').collection(collection).findOne({}, options)
+    return await client.db(db || 'CSE341').collection(collection).findOne(query, options)
   } catch (err) {
     console.error(err)
   }
 }
 
-module.exports = { connect, insert, find, findOne }
+async function update({ collection, data, db, filter, options }) {
+  try {
+    return await client.db(db || 'CSE341').collection(collection).updateOne(filter, { $set: data }, options)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+module.exports = { connect, find, findOne, insert, update }
