@@ -20,6 +20,15 @@ const validateUpdatedContact = [
 ]
 
 async function addContact(req, res) {
+  /* #swagger.parameters['body'] = {
+          in: 'body',
+          description: 'Contact data',
+          required: true,
+          schema: {
+              $ref: "#/definitions/NewContact",
+          },
+      }
+  */
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() })
@@ -49,6 +58,15 @@ async function deleteContact(req, res) {
 }
 
 async function updateContact(req, res) {
+  /* #swagger.parameters['body'] = {
+          in: 'body',
+          description: 'Contact data',
+          required: true,
+          schema: {
+              $ref: "#/definitions/UpdatedContact",
+          },
+      }
+  */
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() })
