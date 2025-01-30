@@ -1,16 +1,9 @@
 const swaggerAutogen = require('swagger-autogen')()
 
-const basicContactShape = {
-  type: 'object',
-  properties: {
-    firstName: { type: 'string' },
-    lastName: { type: 'string' },
-    email: { type: 'string' },
-    favoriteColor: { type: 'string' },
-    birthday: { type: 'string', format: 'date-time' }
-  }
-}
-
+/*
+  Live host is https://automatic-train.onrender.com
+  Local host is http://localhost:8080
+*/
 const doc = {
   info: {
     title: 'Contacts API',
